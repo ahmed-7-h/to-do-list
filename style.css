@@ -1,0 +1,294 @@
+/* ============= Base & Theme ============= */
+:root{
+  --bg: #0f172a;           /* slate-900 */
+  --card: #111827;         /* gray-900 */
+  --muted: #94a3b8;        /* slate-400 */
+  --text: #e5e7eb;         /* gray-200 */
+  --primary: #4f46e5;      /* indigo-600 */
+  --primary-600:#4338ca;
+  --primary-700:#3730a3;
+  --success:#16a34a;
+  --danger:#ef4444;
+  --warning:#f59e0b;
+  --ring:#60a5fa;
+  --border:#1f2937;        /* gray-800 */
+  --soft:#0b1220;          /* softer bg */
+  --shadow: 0 10px 30px rgba(2,6,23,.35);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --radius-xs: 10px;
+}
+
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f1f5f9;          /* slate-100 */
+    --card:#ffffff;
+    --muted:#475569;       /* slate-600 */
+    --text:#0f172a;
+    --primary:#4338ca;
+    --primary-600:#3730a3;
+    --primary-700:#312e81;
+    --border:#e5e7eb;
+    --soft:#eef2ff;
+    --shadow: 0 10px 30px rgba(15,23,42,.12);
+  }
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(79,70,229,.12), transparent 60%),
+    radial-gradient(800px 400px at 120% 10%, rgba(37,99,235,.12), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--soft));
+  color:var(--text);
+  line-height:1.6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+
+/* ============= Layout Cards ============= */
+.container{
+  width:min(900px, 100%);
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:24px;
+}
+
+.card{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, transparent), var(--card));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+  backdrop-filter: blur(8px);
+}
+
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:14px;
+}
+h1,h2,h3{
+  margin:0 0 8px;
+  letter-spacing:.2px;
+}
+h2{ font-size:clamp(22px, 2.4vw, 28px); }
+h3{ font-size:clamp(18px, 1.8vw, 22px); color:var(--muted) }
+
+/* ============= Forms ============= */
+form{
+  display:grid;
+  gap:14px;
+  margin-top:12px;
+}
+
+.input{
+  position:relative;
+}
+input[type="email"],
+input[type="password"],
+input[type="text"]{
+  width:100%;
+  padding:14px 14px 14px 44px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) ;
+  color:var(--text);
+  outline:none;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .06s ease;
+}
+input::placeholder{ color: color-mix(in srgb, var(--muted) 80%, transparent) }
+input:focus{
+  border-color: color-mix(in srgb, var(--ring) 60%, var(--primary) 40%);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 22%, transparent);
+  transform: translateY(-1px);
+}
+.input-icon{
+  position:absolute;
+  inset-inline-start:12px; /* RTL/LTR friendly */
+  top:50%;
+  translate:0 -50%;
+  font-size:18px;
+  color:var(--muted);
+  pointer-events:none;
+}
+
+/* ============= Buttons ============= */
+button{
+  all:unset;
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color:#fff;
+  padding:12px 16px;
+  border-radius:var(--radius-sm);
+  text-align:center;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--primary) 40%, transparent);
+  transition: transform .08s ease, filter .15s ease, box-shadow .15s ease;
+}
+button:hover{ filter:brightness(1.05) }
+button:active{ transform: translateY(1px) }
+button.secondary{
+  background:linear-gradient(180deg, #0ea5e9, #0284c7);
+}
+button.ghost{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--muted);
+  box-shadow:none;
+}
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* ============= Links & Messages ============= */
+a{
+  color:var(--primary);
+  text-decoration:none;
+  font-weight:600;
+}
+a:hover{ text-decoration:underline }
+.message{
+  margin-top:8px;
+  font-size:14px;
+  color:var(--muted);
+}
+.message.error{ color: var(--danger); }
+.message.success{ color: var(--success); }
+
+/* ============= Home / Todo ============= */
+.toolbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:8px 0 18px;
+  flex-wrap:wrap;
+}
+#taskInput{
+  flex:1;
+  min-width:240px;
+}
+.list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:10px;
+}
+
+.list li{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--card) 94%, transparent), var(--card));
+  transition: border-color .2s ease, background .2s ease;
+}
+.list li:hover{ border-color: color-mix(in srgb, var(--primary) 35%, var(--border) 65%) }
+
+.todo-text{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  word-break:break-word;
+}
+
+.badge{
+  font-size:12px;
+  padding:2px 8px;
+  border-radius:999px;
+  border:1px solid color-mix(in srgb, var(--success) 45%, var(--border));
+  color: color-mix(in srgb, var(--success) 80%, var(--text));
+  background: color-mix(in srgb, var(--success) 10%, transparent);
+}
+
+.controls{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.control{
+  all:unset;
+  border:1px solid var(--border);
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  color:var(--muted);
+  background: rgba(255,255,255,.02);
+  transition: background .15s ease, border-color .15s ease, transform .06s ease;
+}
+.control:hover{ border-color: color-mix(in srgb, var(--primary) 35%, var(--border)); }
+.control:active{ transform: translateY(1px) }
+
+.control.complete{ color: var(--success); }
+.control.edit{ color: #22d3ee; }
+.control.delete{ color: var(--danger); }
+
+.completed .todo-text{
+  text-decoration: line-through;
+  color: color-mix(in srgb, var(--muted) 70%, transparent);
+}
+.completed{
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--success) 6%, var(--card)),
+    color-mix(in srgb, var(--card) 96%, transparent)
+  );
+  border-color: color-mix(in srgb, var(--success) 25%, var(--border));
+}
+
+/* ============= Auth Pages Helpers ============= */
+.auth{
+  display:grid;
+  gap:18px;
+}
+.auth .hint{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ============= Animations ============= */
+@keyframes pop {
+  from { transform: scale(.98); opacity:.0 }
+  to   { transform: scale(1); opacity:1 }
+}
+.card, .list li{ animation: pop .18s ease both }
+
+/* ============= Responsive ============= */
+@media (min-width: 720px){
+  .grid-2{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+  }
+}
+
+/* ============= Optional: Nice scrollbars ============= */
+*{
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--primary) 40%, var(--border)) transparent;
+}
+*::-webkit-scrollbar{ height:10px; width:10px }
+*::-webkit-scrollbar-thumb{
+  background: color-mix(in srgb, var(--primary) 45%, var(--border));
+  border-radius: 999px;
+  border:2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-track{ background: transparent }
+
+/* ============= Small utilities if needed ============= */
+.hidden{ display:none !important }
+.center{ display:flex; align-items:center; justify-content:center }
+.mt-1{ margin-top:6px } .mt-2{ margin-top:12px } .mt-3{ margin-top:18px }
